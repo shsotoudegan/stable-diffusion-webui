@@ -789,7 +789,7 @@ def reuse_model_from_already_loaded(sd_model, checkpoint_info, timer):
     if sd_model is not None and sd_model.sd_checkpoint_info.filename == checkpoint_info.filename:
         return sd_model
 
-    if shared.opts.sd_checkpoints_keep_in_cpu:
+    if shared.opts.sd_checkpoints_keep_in_cpu and sd_model is not None:
         send_model_to_cpu(sd_model)
         timer.record("send model to cpu")
 
